@@ -9,9 +9,12 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - run: chmod +x gradlew
-    - run: gradle wrapper
-    - run: ./gradlew assembleDebug
+    - name: Generate Gradle Wrapper
+      run: gradle wrapper
+    - name: Grant execute permission
+      run: chmod +x gradlew
+    - name: Build APK
+      run: ./gradlew assembleDebug
     - uses: actions/upload-artifact@v4
       with:
         name: BotFarm-APK
